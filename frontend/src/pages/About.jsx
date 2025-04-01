@@ -1,73 +1,107 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
 import Title from '../components/Title';
 import { assets } from '../assets/assets';
 
 const About = () => {
     return (
         <div className="p-6 md:p-12">
-            <div className="text-2xl text-center pt-8 border-t">
-                <Title text1={'ABOUT'} text2={' US'} />
+            <motion.div
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-2xl text-center pt-8 border-t"
+            >
+                <Title text1={'ABOUT US - Bhagwati Motors (Regd.)'} />
+            </motion.div>
+
+            <div className="my-10 text-center text-xl leading-relaxed">
+                <motion.b className="text-2xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>Our Legacy</motion.b>
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+                    Founded in 1990 by Mr. Anil Gupta, Bhagwati Motors (Regd.) has grown into one of the most trusted names in the automobile industry in Delhi. Located in Karol Bagh, we started with a simple yet powerful vision—to make quality cars accessible to everyone. Over the past three decades, we have helped thousands of customers find their perfect vehicle, making car ownership a seamless and reliable experience.
+                </motion.p>
+                <br />
+
+                <motion.b className="text-2xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>Our Growth Story</motion.b>
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
+                    What began as a small dealership has evolved into a renowned car trading hub, known for its integrity, transparency, and customer-first approach. Through dedication and hard work, we have expanded our inventory, offering a diverse range of certified pre-owned cars, from budget-friendly options to premium luxury vehicles. Our strong network, customer referrals, and commitment to service have fueled our growth, establishing Bhagwati Motors as a household name in Delhi's automobile market.
+                </motion.p>
+                <br />
+
+                <motion.b className="text-2xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>Our Vision</motion.b>
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
+                    We aim to be the most trusted and customer-centric pre-owned car dealership in India, providing quality cars with honest pricing and a seamless buying experience. Our focus is to make car ownership easy, accessible, and affordable for everyone.
+                </motion.p>
+                <br />
+
+                <motion.b className="text-2xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>Our Mission</motion.b>
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}>
+                    To provide high-quality, certified pre-owned cars with complete transparency.
+
+                    To build lasting relationships with our customers by offering trust-driven services.
+
+                    To simplify the car buying experience with hassle-free financing, RC transfers, and expert guidance.
+
+                    To continuously expand and innovate, ensuring our customers get the best deals and service.
+
+                    At Bhagwati Motors (Regd.), we don’t just sell cars—we build trust, relationships, and lifetime experiences. Visit us today and drive home your dream car with confidence!
+                </motion.p>
+                <br />
             </div>
-            <div className="my-10">
-                <div className="text-center text-xl text-gray-800 leading-relaxed">
-                    <p>
-                        Buying a car is not just a transaction, it’s an emotional journey filled with joy and excitement.
-                        At <b>Bhagwati Motors (Regd)</b>, we understand this and are committed to making your car-buying experience hassle-free and delightful.
-                        Established in 1990, we are one of Delhi's most trusted and largest used car dealerships, offering a wide range of vehicles from regular to luxury and premium classes—all at competitive prices.
-                    </p>
-                    <br />
-                    <p>
-                        As an authorized dealer of several prestigious brands, we provide high-quality new and certified pre-owned cars, carefully inspected to ensure the highest standards of safety and performance.
-                        Our commitment to quality and customer satisfaction sets us apart, making us the preferred choice for discerning car buyers in Delhi.
-                    </p>
-                    <br />
-                    <b className="text-2xl">Our Mission</b>
-                    <p>
-                        Our mission is to offer top-notch vehicles that fit your budget without compromising on quality.
-                        Each car undergoes a rigorous inspection process, covering over 100 quality checkpoints to guarantee comfort and safety.
-                        Additionally, we extend warranty coverage on all sales to give you complete peace of mind.
-                    </p>
-                    <br />
-                    <p>
-                        We don’t just sell cars—we build lasting relationships with our customers. Our multi-brand car accessories and servicing facilities are managed by an expert team of certified mechanics who are dedicated to keeping your vehicle in prime condition.
-                        Whether it’s routine maintenance or specialized care, you can trust us to deliver excellence.
-                    </p>
-                    <br />
-                    <b className="text-2xl">Why Choose Us?</b>
-                    <div className="flex flex-col md:flex-row justify-center gap-6 mt-6">
-                        <div className="border px-8 py-6 bg-white shadow-lg rounded-lg">
-                            <b>🛠️ Quality Assurance</b>
-                            <p className="text-gray-600 mt-2">
-                                Our vehicles undergo stringent quality checks to ensure reliability and safety, giving you complete peace of mind.
-                            </p>
-                        </div>
-                        <div className="border px-8 py-6 bg-white shadow-lg rounded-lg">
-                            <b>💼 Hassle-Free Financing</b>
-                            <p className="text-gray-600 mt-2">
-                                We offer flexible financing options with low interest rates, making car ownership affordable and easy.
-                            </p>
-                        </div>
-                        <div className="border px-8 py-6 bg-white shadow-lg rounded-lg">
-                            <b>🚗 Wide Range of Vehicles</b>
-                            <p className="text-gray-600 mt-2">
-                                From budget-friendly to premium luxury cars, find your dream vehicle from our vast inventory.
-                            </p>
-                        </div>
-                        <div className="border px-8 py-6 bg-white shadow-lg rounded-lg">
-                            <b>🤝 Customer Satisfaction</b>
-                            <p className="text-gray-600 mt-2">
-                                We prioritize your happiness by delivering transparent, ethical, and friendly service every step of the way.
-                            </p>
-                        </div>
-                    </div>
-                    <br />
-                    <p>
-                        At <b>Bhagwati Motors</b>, we understand the responsibility of dealing not just with cars but with your dreams.
-                        Our commitment to transparency, integrity, and exceptional customer service has earned us a reputation as one of the most customer-friendly car dealers in the region.
-                    </p>
-                    <br />
-                    <b>Find your dream car today at Bhagwati Motors!</b>
-                </div>
+
+            <h1 className="text-2xl text-center">Why Choose Us?</h1>
+            <div className="flex flex-col md:flex-row justify-center gap-6 mt-6">
+                {[{
+                    title: "🛠️ Quality Assurance",
+                    text: "Our vehicles undergo stringent quality checks to ensure reliability and safety."
+                }, {
+                    title: "💼 Hassle-Free Financing",
+                    text: "We offer flexible financing options with low interest rates."
+                }, {
+                    title: "🚗 Wide Range of Vehicles",
+                    text: "Find your dream vehicle from our vast inventory."
+                }, {
+                    title: "🤝 Customer Satisfaction",
+                    text: "We prioritize your happiness with transparent service."
+                }].map((item, index) => (
+                    <motion.div
+                        key={index}
+                        className="border px-8 py-6 shadow-lg rounded-lg w-full md:w-1/4"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <b>{item.title}</b>
+                        <p className="mt-2">{item.text}</p>
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Awards Section */}
+            <div className="mt-12">
+                <h2 className="text-center text-3xl font-bold mb-6">🏆 Our Awards</h2>
+                <Swiper slidesPerView={1} spaceBetween={30} pagination={{ clickable: true }} modules={[Pagination]} className="w-full max-w-3xl mx-auto">
+                    {[assets.awards1, assets.awards2].map((award, index) => (
+                        <SwiperSlide key={index}>
+                            <img src={award} alt={`Award ${index + 1}`} className="rounded-lg shadow-lg w-full" />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
+
+            {/* Team Section */}
+            <div className="mt-12">
+                <h2 className="text-center text-3xl font-bold mb-6">👨‍💼 Meet Our Team</h2>
+                <Swiper slidesPerView={3} spaceBetween={20} pagination={{ clickable: true }} modules={[Pagination]} className="w-full max-w-5xl mx-auto">
+                    {[assets.team1, assets.team2, assets.team3, assets.team4, assets.team5, assets.team6, assets.team7, assets.team8, assets.team9, assets.team10, assets.team11, assets.team12].map((team, index) => (
+                        <SwiperSlide key={index}>
+                            <img src={team} alt={`Team Member ${index + 1}`} className="rounded-lg shadow-lg w-full" />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
         </div>
     );

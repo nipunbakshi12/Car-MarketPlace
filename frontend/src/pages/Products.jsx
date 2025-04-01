@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import axios from "axios";
 import RelatedProducts from "../components/RelatedProducts";
+import Confetti from 'react-confetti';
 
 const Products = () => {
     const { productId } = useParams();
@@ -12,6 +13,7 @@ const Products = () => {
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({ name: "", contact: "" });
     const [message, setMessage] = useState("");
+    const [showConfetti, setShowConfetti] = useState(false);
     const [loading, setLoading] = useState(false); // Loader state
 
     useEffect(() => {
@@ -38,10 +40,21 @@ const Products = () => {
                 contact: formData.contact,
                 productName: productsData.name,
             });
-            setMessage(response.data.message);
+            if (response.status === 200) {
+                setMessage(response.data.message);
+                setShowConfetti(true);
+
+                // Hide confetti after 5 seconds
+                setTimeout(() => {
+                    setShowConfetti(false);
+                }, 5000);
+            } else {
+                setMessage("Failed to send enquiry. Please try again.");
+            }
             setTimeout(() => {
                 setShowForm(false);
                 setMessage("");
+                setFormData({ name: "", contact: "" });
             }, 3000);
         } catch (error) {
             setMessage("Failed to send enquiry. Please try again.");
@@ -51,7 +64,18 @@ const Products = () => {
     };
 
     return productsData ? (
-        <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100">
+        <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100 relative">
+            {/* Confetti component */}
+            {showConfetti && (
+                <Confetti
+                    width={window.innerWidth}
+                    height={window.innerHeight}
+                    numberOfPieces={1000}
+                    recycle={false}
+                    onConfettiComplete={() => setShowConfetti(false)}
+                    gravity={0.6}
+                />
+            )}
             <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
                 <div className="flex-1 flex flex-col-reverse gap-3 sm:flex-row">
                     <div className="w-full sm:w-[90%]">
@@ -73,17 +97,22 @@ const Products = () => {
                 <div className="flex-1">
                     <h1 className="font-medium text-2xl mt-2">{productsData.name}</h1>
                     <p className="mt-5 text-3xl font-medium">{currency}{productsData.price}</p>
-                    <p className="mt-5 text-gray-500 md:w-4/5">{productsData.description}</p>
-
                     <button
                         onClick={() => setShowForm(true)}
-                        className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 mt-[30px]"
+                        className="bg-red-600 px-8 py-3 text-xl active:bg-gray-700 mt-[30px]"
                     >
                         ENQUIRY NOW
                     </button>
 
+                    {/* <button
+                        onClick={() => setShowForm(true)}
+                        className="bg-red-600 px-8 py-3 text-xl active:bg-gray-700 mt-[30px]"
+                    >
+                        ENQUIRY NOW
+                    </button> */}
+
                     {showForm && (
-                        <div className="mt-5 p-4 border rounded-lg bg-gray-100 shadow-md">
+                        <div className="mt-5 p-4 border rounded-lg shadow-md">
                             <h2 className="text-lg font-semibold mb-2">Enquiry Form</h2>
                             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                                 <input
@@ -104,7 +133,7 @@ const Products = () => {
                                     required
                                     className="p-2 border rounded"
                                 />
-                                <button type="submit" className="bg-blue-600 text-white px-6 py-2 rounded flex items-center justify-center">
+                                <button type="submit" className="bg-red-600 px-6 py-2 rounded flex items-center justify-center">
                                     {loading ? (
                                         <svg className="animate-spin h-5 w-5 mr-2 border-t-2 border-white rounded-full" viewBox="0 0 24 24"></svg>
                                     ) : "Submit Enquiry"}
@@ -114,10 +143,20 @@ const Products = () => {
                         </div>
                     )}
 
+                    <p className="mt-5 md:w-4/5">
+                        <ul className="list-disc pl-5">
+                            {productsData.description
+                                .split('.')
+                                .filter(item => item.trim() !== '') // Remove empty items after split
+                                .map((item, index) => (
+                                    <li key={index} className="mb-2">
+                                        {item.trim()}.
+                                    </li>
+                                ))}
+                        </ul>
+                    </p>
+
                     <hr className="mt-8 sm:w-4/5" />
-                    <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
-                        <p>Easy Return and Exchange policy in 7 days</p>
-                    </div>
                 </div>
             </div>
             <RelatedProducts

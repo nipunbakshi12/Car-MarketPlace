@@ -1,79 +1,121 @@
-import React from 'react';
-import Title from '../components/Title';
-import { assets } from '../assets/assets';
-import { FaWhatsapp, FaFacebook } from "react-icons/fa";
+import React from "react";
+import { motion } from "framer-motion";
+import Title from "../components/Title";
+import { FaWhatsapp, FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
+
+const fadeIn = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
 const Contact = () => {
     return (
-        <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-6 md:p-12">
-            <div className="text-center text-2xl pt-10 border-t border-gray-300 mb-10">
-                <Title text1={'CONTACT'} text2={' US'} className="text-3xl md:text-4xl font-bold text-gray-800" />
-            </div>
+        <motion.div
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col items-center justify-center px-6 py-12 bg-gray-50"
+        >
+            {/* Title Section */}
+            <motion.div variants={fadeIn} className="text-center mb-10">
+                <Title
+                    text1={"CONTACT"}
+                    text2={" US"}
+                    className="text-4xl font-bold text-gray-800"
+                />
+                <p className="text-gray-600 mt-3 max-w-lg mx-auto">
+                    Have questions or need assistance? We’re here to help! Reach out via
+                    phone, email, or visit our showroom.
+                </p>
+            </motion.div>
 
-            <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="p-8">
-                    <p className="text-gray-600 text-center mb-6">
-                        Have questions or need assistance? We’re here to help! Reach out to us via phone, email, or visit our showroom.
-                    </p>
-
-                    <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="space-y-4">
-                            <ContactInfo icon="📧" label="Email">
-                                <a href="mailto:sales@bhagwaticars.com" className="text-blue-600 hover:underline">sales@bhagwaticars.com</a>
-                            </ContactInfo>
-                            <ContactInfo icon="📞" label="Phone">
-                                <div className="flex flex-col items-start space-y-2">
-                                    <PhoneLink number="+91 9999226647, +91 9999806611" />
-                                    <PhoneLink number="+91 9999706644, +91 9810020567" />
-                                </div>
-                            </ContactInfo>
-                            <ContactInfo icon="🌐" label="Website">
-                                <a href="http://www.bhagwaticars.com" className="text-blue-600 hover:underline">www.bhagwaticars.com</a>
-                            </ContactInfo>
-                        </div>
-                        <div className="space-y-4">
-                            <ContactInfo icon={<FaWhatsapp className="text-green-600 text-xl" />} label="WhatsApp">
-                                <a href="https://wa.me/7777999963" className="text-blue-600 hover:underline">+91 7777999963</a>
-                            </ContactInfo>
-                            <ContactInfo icon="📅" label="Business Hours">
-                                Monday to Saturday: 10:00 AM - 8:00 PM<br />
-                                Sunday: Closed
-                            </ContactInfo>
-                            <ContactInfo icon={<FaFacebook className="text-blue-600 text-xl" />} label="Follow Us on Facebook">
-                                <a href="https://www.facebook.com/bhagwaticars" className="text-blue-600 hover:underline">facebook.com/bhagwaticars</a>
-                            </ContactInfo>
-                        </div>
-                    </div>
-
-                    <div className="mt-8 text-lg flex justify-center">
-                        <ContactInfo icon="📍" label="Address">
-                            <a href="https://maps.app.goo.gl/Dp5VCVKxRu2CJDQd8" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                                1017, Main Arya Samaj Road,<br />
-                                Karol Bagh, New Delhi - 110005
-                            </a>
+            {/* Contact Info Section */}
+            <motion.div
+                variants={fadeIn}
+                className="w-full max-w-5xl bg-white rounded-xl shadow-lg p-8"
+            >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    {/* Left Side */}
+                    <motion.div variants={fadeIn} className="space-y-6">
+                        <ContactInfo icon="📧" label="Email">
+                            <ContactLink href="mailto:sales@bhagwaticars.com">sales@bhagwaticars.com</ContactLink>
                         </ContactInfo>
-                    </div>
+
+                        <ContactInfo icon="📞" label="Phone">
+                            <PhoneLink number="9999226647" />
+                            <PhoneLink number="9999806611" />
+                            <PhoneLink number="9999706644" />
+                            <PhoneLink number="9810020567" />
+                        </ContactInfo>
+
+                        <ContactInfo icon="🌐" label="Website">
+                            <ContactLink href="http://www.bhagwaticars.com">www.bhagwaticars.com</ContactLink>
+                        </ContactInfo>
+
+                        <ContactInfo icon={<FaYoutube className="text-red-600 text-xl" />} label="YouTube">
+                            <ContactLink href="https://youtube.com/@bhagwatimotorsregd">youtube.com/@bhagwatimotorsregd</ContactLink>
+                        </ContactInfo>
+
+                        <ContactInfo icon="📍" label="Address">
+                            <ContactLink href="https://maps.app.goo.gl/Dp5VCVKxRu2CJDQd8">1017, Main Arya Samaj Road, Karol Bagh, New Delhi - 110005</ContactLink>
+                        </ContactInfo>
+                    </motion.div>
+
+                    {/* Right Side */}
+                    <motion.div variants={fadeIn} className="space-y-6">
+                        <ContactInfo icon={<FaWhatsapp className="text-green-600 text-xl" />} label="WhatsApp">
+                            <PhoneLink number="9999226647" />
+                            <PhoneLink number="9999806611" />
+                        </ContactInfo>
+
+                        <ContactInfo icon="📅" label="Business Hours">
+                            <p className="text-gray-700">
+                                <span className="font-semibold">Monday to Saturday:</span> 10:00 AM - 8:00 PM
+                                <br />
+                                <span className="font-semibold">Sunday:</span> Closed
+                            </p>
+                        </ContactInfo>
+
+                        <ContactInfo icon={<FaFacebook className="text-blue-600 text-xl" />} label="Facebook">
+                            <ContactLink href="https://www.facebook.com/bhagwaticars">facebook.com/bhagwaticars</ContactLink>
+                        </ContactInfo>
+
+                        <ContactInfo icon={<FaInstagram className="text-pink-600 text-xl" />} label="Instagram">
+                            <ContactLink href="https://www.instagram.com/bhagwaticars">instagram.com/bhagwaticars</ContactLink>
+                        </ContactInfo>
+                    </motion.div>
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 };
 
-// Helper component for consistent contact information styling
+// Contact Info Component
 const ContactInfo = ({ icon, label, children }) => (
-    <div className="flex flex-col items-start">
-        <p className="text-gray-600 mb-1 flex items-center">
-            <span className="mr-2">{icon}</span> <span className="font-semibold">{label}:</span>
+    <motion.div variants={fadeIn} className="flex flex-col">
+        <p className="text-[#c24be2] font-semibold flex items-center">
+            <span className="mr-2">{icon}</span> {label}:
         </p>
         <div className="ml-6">{children}</div>
-    </div>
+    </motion.div>
 );
 
-// Helper component for phone number links
+// Phone Link Component
 const PhoneLink = ({ number }) => (
-    <a href="https://wa.me/7777999963" className="text-blue-600 hover:underline">
-        {number}
-    </a>
+    <ContactLink href={`https://wa.me/${number}`}>+91 {number}</ContactLink>
+);
+
+// Contact Link Component
+const ContactLink = ({ href, children }) => (
+    <motion.a
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:text-blue-800 transition duration-200 underline"
+    >
+        {children}
+    </motion.a>
 );
 
 export default Contact;

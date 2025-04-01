@@ -8,6 +8,8 @@ import Products from './pages/Products'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
+import './App.css'
+import Reviews from './pages/Reviews'
 
 const App = () => {
   return (
@@ -19,6 +21,7 @@ const App = () => {
         <Route path='/collection' element={<Collection />} />
         <Route path='/about' element={<About />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/reviews' element={<Reviews />} />
         <Route path='/product/:productId' element={<Products />} />
       </Routes>
       <Footer />

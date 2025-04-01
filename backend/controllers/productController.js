@@ -45,7 +45,7 @@ const addProduct = async (req, res) => {
         const productData = {
             name,
             description,
-            price: Number(price),
+            price: price,
             category,
             transmission,
             ownership,
